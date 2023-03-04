@@ -47,21 +47,40 @@ router.post('/todos',auth,async(req,res)=>{
           console.log(response.data)
           res.json({json:response.data.data});
     }catch(error){
-        console.log(error.response.data.error.message)
-        res.status(401).json({error:error.response.data.error.message})
+        console.log(error.response)
+        res.status(401).json({error:"Couldn't generate try changing the prompt"})
     }
 });
 router.post('/UploadImage',auth,async(req,res)=>{
     const{image,userID,prompt,time}=req.body;
+    const docu=await userCollection.findById(userID)
+    console.log(docu.images.length)
+    if(docu.images.length==3){
+        res.status(401).json({error:"Max limit reached"})
+        return
+    };
+    console.log('uploading')
     try{
         await userCollection.findByIdAndUpdate(userID,{$push:{images:{image,prompt,time}}});
         res.json({status:'done'})
     }catch(error){
+        console.log('error')
+        console.log(error)
+    }
+})
+router.post('/DeleteImage',auth,async(req,res)=>{
+    const{image,userID}=req.body;
+    console.log('deleting')
+    try{
+        await userCollection.findByIdAndUpdate(userID,{$pull:{images:{image}}});
+        res.json({status:'done'})
+    }catch(error){
+        console.log('error')
         console.log(error)
     }
 })
 router.post('/getSavedImages',auth,async(req,res)=>{
-    const{userID}=req.body;
+    const{userID,prompt,time}=req.body;
     try{
         const userData=await userCollection.findById(userID);
         res.json({images:userData.images})

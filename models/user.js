@@ -17,6 +17,9 @@ const userSchema=new mongoose.Schema({
     chat:Array,
     images:Array,
     pfp:String,
+    walletAddress:String,
+    walletPrivateKey:String,
+    transactions:Array
 
 },{timestamps:true});
 const userCollection= mongoose.model('user',userSchema);
