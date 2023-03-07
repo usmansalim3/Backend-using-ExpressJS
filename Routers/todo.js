@@ -1,12 +1,13 @@
 const express=require('express')
 const jwt=require('jsonwebtoken')
+require('dotenv').config();
 const {Configuration,OpenAIApi}=require('openai');
 const userCollection = require('../models/user');
 const chatCollection = require('../models/user');
 const router=express.Router();
 
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: process.env.OPENAI_KEY
 });
 const openai = new OpenAIApi(configuration);
 
