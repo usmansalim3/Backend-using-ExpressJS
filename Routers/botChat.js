@@ -5,7 +5,7 @@ const chatCollection = require('../models/user');
 const router=express.Router();
 
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: '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'
 });
 const openai = new OpenAIApi(configuration);
 
