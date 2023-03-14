@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "mongoose": "^6.8.0",
     "nodemon": "^2.0.20",
     "openai": "^3.1.0",
-    "react-native-element-textinput": "^2.0.1"
+    "react-native-element-textinput": "^2.0.1",
+    "twilio": "^4.8.0"
   }
 }

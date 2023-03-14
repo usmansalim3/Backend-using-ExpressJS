@@ -19,8 +19,8 @@ const userSchema=new mongoose.Schema({
     pfp:String,
     walletAddress:String,
     walletPrivateKey:String,
-    transactions:Array
-
+    transactions:Array,
+    otp:Number
 },{timestamps:true});
 const userCollection= mongoose.model('user',userSchema);
 module.exports=userCollection;

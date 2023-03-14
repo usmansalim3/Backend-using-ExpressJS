@@ -1,10 +1,10 @@
 const express=require('express')
 const jwt=require('jsonwebtoken')
-require('dotenv').config();
 const {Configuration,OpenAIApi}=require('openai');
 const userCollection = require('../models/user');
 const chatCollection = require('../models/user');
 const router=express.Router();
+require('dotenv').config()
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_KEY
@@ -70,10 +70,10 @@ router.post('/UploadImage',auth,async(req,res)=>{
     }
 })
 router.post('/DeleteImage',auth,async(req,res)=>{
-    const{image,userID}=req.body;
+    const{image,userID,time}=req.body;
     console.log('deleting')
     try{
-        await userCollection.findByIdAndUpdate(userID,{$pull:{images:{image}}});
+        await userCollection.findByIdAndUpdate(userID,{$pull:{images:{time}}});
         res.json({status:'done'})
     }catch(error){
         console.log('error')
@@ -103,6 +103,7 @@ router.post('/botChat',async (req,res)=>{
         res.json({response:response.data.choices[0].text.trim().replace('\n','').replace('?','')})
     }catch(error){
         console.log(error.response)
+        res.status(200).json({response:"Sorry i cannot answer that"})
     }
 })
 router.post('/chat',async(req,res)=>{

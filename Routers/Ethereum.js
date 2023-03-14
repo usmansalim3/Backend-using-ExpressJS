@@ -6,8 +6,7 @@ const userCollection = require("../models/user");
 const RPC="https://goerli.infura.io/v3/96008a68dd4149cf981965bfa53b4149";
 const mainnetRPC="https://mainnet.infura.io/v3/96008a68dd4149cf981965bfa53b4149";
 const provider= new ethers.JsonRpcProvider(RPC);
-const contractAddress="0xf3886740b4D60878C25604B97CF3baeAE342622d";
-const account1="0x6227B1B91F5EF67aDd7DC829Cb0b58fF9C71a6E0";
+
 
 
 router.post("/isWalletConnected",async (req,res)=>{
