@@ -3,9 +3,10 @@ const {Configuration,OpenAIApi}=require('openai');
 const userCollection = require('../models/user');
 const chatCollection = require('../models/user');
 const router=express.Router();
+require('dotenv').config()
 
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: process.env.OPENAI_KEY
 });
 const openai = new OpenAIApi(configuration);
 
